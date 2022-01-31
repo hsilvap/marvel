@@ -5,7 +5,9 @@ export const StyledDetailHeader = styled.div`
     height:305px;
     width: 100%; /* fall back */
     width: 100vw;
-    background-repeat: repeat;  
+    background-repeat: no-repeat;  
+    background-position: 0% 0%;
+    background-size: 100% 100%;
     background-image:url(${props => props.url});
     > label {
         width: 350px;
