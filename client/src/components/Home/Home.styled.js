@@ -14,3 +14,11 @@ export const StyledHome = styled.section`
 export const StyledHomeTitle = styled.h1`
     text-align:center;
 `
+export const StyledPaginationButton = styled.button`
+    background-color: grey;
+    color:white;
+    margin:12px 12px;
+`
+export const StyledPaginationWrapper = styled.div`
+    padding: 1em;
+`
