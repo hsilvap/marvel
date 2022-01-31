@@ -7,3 +7,7 @@ export const StyledHome = styled.section`
     grid-gap:4em;
     padding:50px 50px
 `
+
+export const StyledHomeTitle = styled.h1`
+    text-align:center;
+`
