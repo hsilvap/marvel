@@ -3,13 +3,16 @@ const cors = require('cors')
 const { uuid } = require('uuidv4');
 const { JsonDB } = require('node-json-db');
 const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
-
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+}
 var db = new JsonDB(new Config("commentsDb", true, true, '/'));
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.get("/v1/characters/:id", (req, res) => {
   const characterId = req.params.id
