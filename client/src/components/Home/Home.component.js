@@ -8,8 +8,10 @@ export const Home = () => {
     const [page, setPage] = React.useState(1);
     const [data, setData] = React.useState([]);
     const [total, setTotal] = React.useState(null);
+    const apiKey = process.env.REACT_APP_MARVEL_KEY;
+    
     const loadCharacters = async () => {
-        const { data } = await axios.get(`https://gateway.marvel.com/v1/public/characters?limit=20&offset=0&apikey=39bcd6f842f465bb25a28d6ddca1532b`)
+        const { data } = await axios.get(`https://gateway.marvel.com/v1/public/characters?limit=20&offset=0&apikey=${apiKey}`)
         setData(data.data.results)
         if (total == null) {
             setTotal(data.data.total)

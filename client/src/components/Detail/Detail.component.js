@@ -9,10 +9,11 @@ import { Comment } from '../Comment/Comment.component';
 const FULFILLED = "fulfilled"
 export const Detail = () => {
     let params = useParams();
+    const apiKey = process.env.REACT_APP_MARVEL_KEY;
     const [isLoading, setIsLoading] = React.useState(true);
     const [characterData, setCharacterData] = React.useState({});
     const [characterBlogEntries, setCharacterBlogEntries] = React.useState([]);
-    const marvelData = axios.get(`https://gateway.marvel.com/v1/public/characters/${params.id}?apikey=39bcd6f842f465bb25a28d6ddca1532b`)
+    const marvelData = axios.get(`https://gateway.marvel.com/v1/public/characters/${params.id}?apikey=${apiKey}`)
     const commentData = axios.get(`http://localhost:3001/v1/characters/${params.id}`)
 
     const reloadPosts = async () => {
