@@ -27,7 +27,7 @@ app.get("/v1/characters/:id", (req, res) => {
 });
 app.post("/v1/characters", (req, res) => {
   const { author, post, } = req.body
-  const entry = { id: uuid(), author, post }
+  const entry = { id: uuid(), author, post, date: new Date().toISOString() }
   db.push(`/${req.body.characterId}`, [entry], false);
   res.status(201).send()
 });

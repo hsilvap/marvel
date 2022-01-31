@@ -3,6 +3,8 @@ import axios from 'axios'
 import { NavBar } from '../NavBar/NavBar.component'
 import { useParams } from 'react-router-dom';
 import { StyledDetailHeader, StyledDetailWrapper, StyledInfoWrapper, StyledNewsWrapper, StyledSeriesContainer } from './Detail.styled';
+import { NewComment } from '../NewComment/NewComment.component';
+import { Comment } from '../Comment/Comment.component';
 
 const FULFILLED = "fulfilled"
 export const Detail = () => {
@@ -13,10 +15,17 @@ export const Detail = () => {
     const marvelData = axios.get(`https://gateway.marvel.com/v1/public/characters/${params.id}?apikey=39bcd6f842f465bb25a28d6ddca1532b`)
     const commentData = axios.get(`http://localhost:3001/v1/characters/${params.id}`)
 
+    const reloadPosts = async () => {
+        const { data } = await axios.get(`http://localhost:3001/v1/characters/${params.id}`)
+        setCharacterBlogEntries(data)
+    }
     const loadCharacterInfo = () => {
         Promise.allSettled([marvelData, commentData]).then(result => {
             if (result[0].status == FULFILLED) {
                 setCharacterData(result[0].value.data.data.results[0])
+            }
+            if (result[1].status == FULFILLED) {
+                setCharacterBlogEntries(result[1].value.data)
             }
             setIsLoading(false)
         })
@@ -44,7 +53,10 @@ export const Detail = () => {
                         {characterData.stories.items.map((story) => <li key={story.resourceURI}>{story.name}</li>)}
                     </ul></dd>
                     <dt>Comments</dt>
-                    <dd></dd>
+                    <dd>
+                        <NewComment characterId={characterData.id} reloadPosts={reloadPosts} />
+                        {characterBlogEntries.map((entry) => <Comment key={entry.id} {...entry}/>)}
+                    </dd>
                 </dl>
             </StyledInfoWrapper>
             <StyledNewsWrapper>
