@@ -4,13 +4,13 @@ export const StyledHeroCard = styled.div`
    display: flex;
    flex-flow:column;
    cursor:pointer;
-   width: 250px;
+   width: 200px;
    place-self:center;
 
    > img {
         flex-shrink:0;
-        height: 250px;
-        width: 250px;
+        height: 200px;
+        width: 200px;
    } 
    > span {
        text-align:center;

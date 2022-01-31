@@ -29,6 +29,9 @@ export const StyledDetailWrapper = styled.section`
     display: flex;
     flex-flow:row;
     font-size: 24px;
+    @media (max-width: 425px) {
+        flex-flow:column;
+    }
 
 `
 export const StyledInfoWrapper = styled.section`

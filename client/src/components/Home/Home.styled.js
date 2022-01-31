@@ -5,7 +5,10 @@ export const StyledHome = styled.section`
     grid-template-columns: repeat(5, 1fr);
     align-items:center;
     grid-gap:4em;
-    padding:50px 50px
+    padding:50px 50px;
+    @media (max-width: 425px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 export const StyledHomeTitle = styled.h1`
